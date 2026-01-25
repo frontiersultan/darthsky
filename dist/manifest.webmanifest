@@ -1,0 +1,1 @@
+{"name":"Darth Sky Weather","short_name":"Darth Sky","description":"A Dark Sky-inspired weather app","start_url":"/","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a","lang":"en","scope":"/","orientation":"portrait","icons":[{"src":"/icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}

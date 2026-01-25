@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: 255 255 255;
+    --color-foreground: 15 23 42;
+    --color-card: 248 250 252;
+    --color-card-foreground: 15 23 42;
+    --color-primary: 14 165 233;
+    --color-primary-foreground: 255 255 255;
+    --color-muted: 241 245 249;
+    --color-muted-foreground: 100 116 139;
+    --color-border: 226 232 240;
+  }
+
+  .dark {
+    --color-background: 15 23 42;
+    --color-foreground: 248 250 252;
+    --color-card: 30 41 59;
+    --color-card-foreground: 248 250 252;
+    --color-primary: 56 189 248;
+    --color-primary-foreground: 15 23 42;
+    --color-muted: 51 65 85;
+    --color-muted-foreground: 148 163 184;
+    --color-border: 51 65 85;
+  }
+
+  * {
+    @apply border-slate-200 dark:border-slate-700;
+  }
+
+  body {
+    @apply bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700;
+  }
+
+  .card-header {
+    @apply px-4 py-3 border-b border-slate-100 dark:border-slate-700;
+  }
+
+  .card-body {
+    @apply p-4;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl font-medium transition-colors;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-sky-500 text-white hover:bg-sky-600 active:bg-sky-700;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800;
+  }
+
+  .btn-sm {
+    @apply h-8 px-3 text-sm;
+  }
+
+  .btn-md {
+    @apply h-10 px-4 text-sm;
+  }
+
+  .btn-lg {
+    @apply h-12 px-6 text-base;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-slate-200 dark:border-slate-700;
+    @apply bg-white dark:bg-slate-800 px-4 py-2;
+    @apply text-slate-900 dark:text-slate-100;
+    @apply placeholder:text-slate-400 dark:placeholder:text-slate-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent;
+  }
+
+  .toggle {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full;
+    @apply bg-slate-200 dark:bg-slate-700;
+    @apply transition-colors duration-200 ease-in-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2;
+  }
+
+  .toggle-active {
+    @apply bg-sky-500;
+  }
+
+  .toggle-thumb {
+    @apply inline-block h-4 w-4 transform rounded-full;
+    @apply bg-white shadow-sm;
+    @apply transition-transform duration-200 ease-in-out;
+  }
+
+  .toggle-thumb-active {
+    @apply translate-x-6;
+  }
+
+  .weather-icon {
+    @apply w-16 h-16 fill-current;
+  }
+
+  .temp-display {
+    @apply font-light tracking-tight;
+  }
+
+  .section-title {
+    @apply text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400;
+  }
+
+  .detail-label {
+    @apply text-sm text-slate-500 dark:text-slate-400;
+  }
+
+  .detail-value {
+    @apply text-lg font-medium text-slate-900 dark:text-slate-100;
+  }
+
+  .tab-bar {
+    @apply fixed bottom-0 left-0 right-0;
+    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg;
+    @apply border-t border-slate-200 dark:border-slate-700;
+    @apply pb-safe-bottom;
+  }
+
+  .tab-item {
+    @apply flex flex-col items-center justify-center py-2 px-4;
+    @apply text-slate-500 dark:text-slate-400;
+    @apply transition-colors duration-150;
+  }
+
+  .tab-item-active {
+    @apply text-sky-500;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-slate-200 dark:bg-slate-700 rounded;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .safe-area-padding {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-gradient-weather {
+    background: linear-gradient(
+      to bottom,
+      rgb(var(--color-background)),
+      rgb(var(--color-muted))
+    );
+  }
+
+  .glass {
+    @apply bg-white/70 dark:bg-slate-800/70 backdrop-blur-lg;
+  }
+
+  .glass-strong {
+    @apply bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl;
+  }
+}
+
+/* Map styles */
+.maplibregl-map {
+  font-family: inherit;
+}
+
+.maplibregl-ctrl-attrib {
+  @apply text-xs text-slate-500 dark:text-slate-400;
+}
+
+/* D3 chart styles */
+.precip-chart {
+  @apply w-full h-full;
+}
+
+.precip-chart .area {
+  fill: url(#precipGradient);
+}
+
+.precip-chart .line {
+  fill: none;
+  stroke: rgb(59, 130, 246);
+  stroke-width: 2;
+}
+
+.precip-chart .axis {
+  @apply text-slate-400;
+}
+
+.precip-chart .axis line,
+.precip-chart .axis path {
+  stroke: currentColor;
+}
+
+.precip-chart .grid line {
+  stroke: rgb(226, 232, 240);
+  stroke-opacity: 0.5;
+}
+
+.dark .precip-chart .grid line {
+  stroke: rgb(51, 65, 85);
+}
+
+/* Animations */
+@keyframes precipWobble {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(var(--wobble-amount, 2px));
+  }
+}
+
+.precip-uncertain {
+  animation: precipWobble 0.5s ease-in-out infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .precip-uncertain {
+    animation: none;
+  }
+}
