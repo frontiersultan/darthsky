@@ -97,7 +97,8 @@ The app will be available at `http://localhost:9050`
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build |
 | `npm run lint` | Run ESLint |
-| `npm run test` | Run tests |
+| `npm run test` | Run tests (watch mode) |
+| `npm run test -- --run` | Run tests once |
 
 ## Project Structure
 
@@ -117,13 +118,31 @@ src/
 └── constants/         # Configuration and constants
 ```
 
+## Testing
+
+The project includes comprehensive test coverage using Vitest and React Testing Library:
+
+| Category | Tests | Coverage |
+|----------|-------|----------|
+| **Utilities** | formatting, units, colors, weather-codes | Unit tests for all conversion and formatting functions |
+| **Stores** | locationStore, settingsStore | State management and persistence |
+| **Services** | transformers | API data transformation |
+| **Components** | Button, Card, Toggle, WeatherIcon, AlertsBanner, CurrentConditions | Rendering, interactions, accessibility |
+| **Hooks** | useUnits | Unit conversion and formatting |
+
+Run tests with:
+```bash
+npm run test        # Watch mode
+npm run test -- --run  # Single run
+```
+
 ## Development Roadmap
 
 ### Phase 1: Core Completions
 - [ ] Integrate minute-by-minute precipitation data source
 - [ ] Add weather alerts via NWS API (or alternative)
-- [ ] Use actual daily high/low from forecast data
-- [ ] Expand test coverage for utilities and hooks
+- [x] Use actual daily high/low from forecast data
+- [x] Expand test coverage for utilities, hooks, stores, and components
 - [ ] Implement push notifications
 
 ### Phase 2: Enhancements

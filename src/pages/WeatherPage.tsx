@@ -107,6 +107,7 @@ export function WeatherPage() {
         <CurrentConditions
           conditions={weather.current}
           location={weather.location}
+          today={today}
         />
 
         <div className="px-4 space-y-4">

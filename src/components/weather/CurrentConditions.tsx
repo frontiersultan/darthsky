@@ -1,14 +1,18 @@
 import { WeatherIcon } from '../common';
 import { useUnits } from '../../hooks';
-import type { CurrentConditions as CurrentConditionsType, Location } from '../../types';
+import type { CurrentConditions as CurrentConditionsType, DailyForecast, Location } from '../../types';
 
 interface CurrentConditionsProps {
   conditions: CurrentConditionsType;
   location: Location;
+  today?: DailyForecast;
 }
 
-export function CurrentConditions({ conditions, location }: CurrentConditionsProps) {
+export function CurrentConditions({ conditions, location, today }: CurrentConditionsProps) {
   const { formatTemp } = useUnits();
+
+  const tempLow = today?.temperatureMin ?? conditions.temperature - 5;
+  const tempHigh = today?.temperatureMax ?? conditions.temperature + 5;
 
   return (
     <div className="text-center py-8 px-4">
@@ -35,13 +39,13 @@ export function CurrentConditions({ conditions, location }: CurrentConditionsPro
         <div>
           <span className="text-blue-500">L: </span>
           <span className="text-slate-700 dark:text-slate-300">
-            {formatTemp(conditions.temperature - 5)}
+            {formatTemp(tempLow)}
           </span>
         </div>
         <div>
           <span className="text-red-500">H: </span>
           <span className="text-slate-700 dark:text-slate-300">
-            {formatTemp(conditions.temperature + 5)}
+            {formatTemp(tempHigh)}
           </span>
         </div>
       </div>
