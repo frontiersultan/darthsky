@@ -42,9 +42,9 @@ export function WeatherPage() {
 
   if (!activeLocation) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen-safe flex flex-col bg-slate-50 dark:bg-slate-900">
         <Header />
-        <div className="flex-1 flex items-center justify-center p-4">
+        <div className="flex-1 flex items-center justify-center p-4 pb-tab-bar">
           <div className="text-center">
             <p className="text-lg text-slate-600 dark:text-slate-400 mb-4">
               No location selected
@@ -60,9 +60,9 @@ export function WeatherPage() {
 
   if (isLoading && !weather) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen-safe flex flex-col bg-slate-50 dark:bg-slate-900">
         <Header />
-        <div className="flex-1 p-4 space-y-4 pb-24">
+        <div className="flex-1 p-4 space-y-4 pb-tab-bar">
           <SkeletonWeatherCard />
           <SkeletonWeatherCard />
         </div>
@@ -72,9 +72,9 @@ export function WeatherPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen-safe flex flex-col bg-slate-50 dark:bg-slate-900">
         <Header onRefresh={handleRefresh} isRefreshing={isRefreshing} />
-        <div className="flex-1 flex items-center justify-center p-4">
+        <div className="flex-1 flex items-center justify-center p-4 pb-tab-bar">
           <div className="text-center">
             <p className="text-lg text-red-500 mb-2">Failed to load weather</p>
             <p className="text-sm text-slate-500 mb-4">
@@ -82,7 +82,7 @@ export function WeatherPage() {
             </p>
             <button
               onClick={handleRefresh}
-              className="btn btn-primary btn-md"
+              className="btn btn-primary btn-md min-touch"
             >
               Try Again
             </button>
@@ -98,10 +98,10 @@ export function WeatherPage() {
   const today = weather.daily[0];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen-safe flex flex-col bg-slate-50 dark:bg-slate-900">
       <Header onRefresh={handleRefresh} isRefreshing={isRefreshing} />
 
-      <main className="flex-1 overflow-y-auto pb-24">
+      <main className="flex-1 overflow-y-auto pb-tab-bar">
         <AlertsBanner alerts={weather.alerts} />
 
         <CurrentConditions

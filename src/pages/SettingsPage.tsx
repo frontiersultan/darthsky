@@ -20,7 +20,7 @@ interface SettingRowProps {
 
 function SettingRow({ label, value, children, onClick }: SettingRowProps) {
   const content = (
-    <div className="flex items-center justify-between py-3 px-4">
+    <div className="flex items-center justify-between py-3 px-4 min-h-[56px]">
       <span className="text-slate-900 dark:text-slate-100">{label}</span>
       {children || (
         <div className="flex items-center gap-2 text-slate-500">
@@ -33,7 +33,7 @@ function SettingRow({ label, value, children, onClick }: SettingRowProps) {
 
   if (onClick) {
     return (
-      <button onClick={onClick} className="w-full text-left hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+      <button onClick={onClick} className="w-full text-left hover:bg-slate-50 dark:hover:bg-slate-800 active:bg-slate-100 dark:active:bg-slate-700 transition-colors">
         {content}
       </button>
     );
@@ -64,7 +64,7 @@ function SelectGroup<T extends string>({
             key={option.value}
             onClick={() => onChange(option.value)}
             className={`
-              px-3 py-1.5 rounded-lg text-sm font-medium transition-colors
+              px-4 py-2.5 rounded-lg text-sm font-medium transition-colors min-h-[44px] active:scale-95
               ${
                 value === option.value
                   ? 'bg-sky-500 text-white'
@@ -99,8 +99,8 @@ export function SettingsPage() {
   } = useSettingsStore();
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pb-24">
-      <div className="pt-safe-top px-4 py-6">
+    <div className="min-h-screen-safe bg-slate-50 dark:bg-slate-900 pb-tab-bar">
+      <div className="pt-safe px-4 py-6">
         <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-6">
           Settings
         </h1>

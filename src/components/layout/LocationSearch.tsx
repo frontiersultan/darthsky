@@ -61,7 +61,7 @@ export function LocationSearch() {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm animate-fade-in">
-      <div className="fixed inset-x-0 top-0 bg-white dark:bg-slate-900 rounded-b-2xl shadow-xl max-h-[80vh] overflow-hidden animate-slide-down">
+      <div className="fixed inset-x-0 top-0 bg-white dark:bg-slate-900 rounded-b-2xl shadow-xl max-h-[85vh] overflow-hidden animate-slide-down pt-safe">
         <div className="p-4 border-b border-slate-200 dark:border-slate-700">
           <div className="flex items-center gap-3">
             <div className="flex-1 relative">

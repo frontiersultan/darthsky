@@ -32,7 +32,8 @@ export function HourlyTimeline({ hourly }: HourlyTimelineProps) {
 
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto scrollbar-hide py-4 px-2 gap-1"
+        className="flex overflow-x-auto scrollbar-hide py-4 px-2 gap-1 snap-x snap-mandatory touch-pan-x"
+        style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {displayHours.map((hour, index) => {
           const isNow = index === 0;
@@ -42,7 +43,7 @@ export function HourlyTimeline({ hourly }: HourlyTimelineProps) {
           return (
             <div
               key={hour.time.toISOString()}
-              className="flex flex-col items-center min-w-[60px] px-2"
+              className="flex flex-col items-center min-w-[60px] px-2 snap-start"
             >
               <span className="text-xs text-slate-500 dark:text-slate-400 mb-2">
                 {isNow ? 'Now' : formatHour(hour.time, timeFormat)}
