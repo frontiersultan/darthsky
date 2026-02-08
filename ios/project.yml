@@ -22,6 +22,7 @@ targets:
     platform: iOS
     sources:
       - DarthSky
+      - Shared
     settings:
       base:
         INFOPLIST_FILE: DarthSky/Resources/Info.plist
@@ -41,3 +42,27 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
     entitlements:
       path: DarthSky/Resources/DarthSky.entitlements
+    dependencies:
+      - target: DarthSkyWidgets
+
+  DarthSkyWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - DarthSkyWidgets
+      - Shared
+      - path: DarthSky/Models
+      - path: DarthSky/Services
+      - path: DarthSky/Utilities
+      - path: DarthSky/Extensions
+    settings:
+      base:
+        INFOPLIST_FILE: DarthSkyWidgets/Resources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.darthsky.weather.widgets
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_EMIT_LOC_STRINGS: true
+        SKIP_INSTALL: true
+        ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME: WidgetBackground
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks"
+    entitlements:
+      path: DarthSkyWidgets/Resources/DarthSkyWidgets.entitlements

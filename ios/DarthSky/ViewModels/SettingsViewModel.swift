@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import WidgetKit
 
 @Observable
 final class SettingsViewModel {
@@ -35,6 +36,10 @@ final class SettingsViewModel {
         if let data = try? JSONEncoder().encode(settings) {
             UserDefaults.standard.set(data, forKey: storageKey)
         }
+
+        // Sync units to App Group for widgets
+        SharedDataManager.shared.saveSettings(units)
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func resetToDefaults() {

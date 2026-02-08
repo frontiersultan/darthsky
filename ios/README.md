@@ -36,6 +36,7 @@ A native iOS weather app built with SwiftUI, the iOS companion to the Darth Sky 
 - [ ] Add a 1024x1024 app icon to `Assets.xcassets/AppIcon.appiconset/`
 - [ ] Update the bundle identifier if needed
 - [ ] Configure signing certificates and provisioning profiles
+- [ ] Create App Group `group.com.darthsky.weather` in Apple Developer Portal
 - [ ] Fill in App Store Connect metadata (description, screenshots, etc.)
 - [ ] Submit for review
 
@@ -56,11 +57,21 @@ DarthSky/
 ├── Utilities/         # Formatting, colors, helpers
 ├── Extensions/        # Swift/SwiftUI extensions
 └── Resources/         # Assets, Info.plist, PrivacyInfo
+
+DarthSkyWidgets/       # Widget extension
+├── Providers/         # Timeline providers for widget data
+├── Views/             # Widget UI views for all sizes
+├── Widgets/           # Widget definitions and configurations
+└── Resources/         # Widget assets and Info.plist
+
+Shared/                # Code shared between app and widgets
+└── SharedDataManager  # App Group data sync
 ```
 
 ## Features
 
-- Real-time weather conditions with dynamic backgrounds
+### Main App
+- Real-time weather conditions with dynamic gradient backgrounds
 - 48-hour scrollable hourly forecast
 - 7-day daily forecast with temperature range bars
 - Interactive precipitation chart (Swift Charts)
@@ -71,6 +82,36 @@ DarthSky/
 - Pull-to-refresh with auto-refresh every 5 minutes
 - Weather alerts display
 - iOS accessibility support
+
+### Widgets (14 total, matching iOS Weather app)
+
+**Home Screen Widgets:**
+| Widget | Sizes | Description |
+|--------|-------|-------------|
+| Current Weather | Small, Medium | Temperature, conditions, location, hourly forecast |
+| Forecast | Medium, Large | 5-day / 7-day forecast with temperature range bars |
+| UV Index | Small | UV gauge with level and protection advice |
+| Sunrise & Sunset | Small | Times with animated sun arc visualization |
+| Wind | Small | Speed, compass direction, and gusts |
+| Precipitation | Small | Probability with 8-hour bar chart |
+| Feels Like | Small | Apparent temperature vs actual |
+| Humidity | Small | Current humidity and dew point |
+| Visibility | Small | Visibility distance and conditions |
+| Pressure | Small | Atmospheric pressure with gauge |
+
+**Lock Screen Widgets:**
+| Widget | Sizes | Description |
+|--------|-------|-------------|
+| Conditions | Circular, Rectangular, Inline | Temperature and icon |
+| Hourly Forecast | Rectangular | Next 5 hours with icons |
+| UV Index | Circular | UV gauge |
+| Wind | Circular | Wind speed |
+
+All widgets feature:
+- Dynamic weather-themed gradient backgrounds
+- Auto-refresh every 15 minutes
+- Data sync via App Group from the main app
+- SF Symbols for weather condition icons
 
 ## APIs Used (Free, No Keys Required)
 
@@ -83,4 +124,5 @@ DarthSky/
 - Location data is only used locally for weather lookups
 - No analytics or tracking
 - Settings stored locally via UserDefaults
+- Widget data shared via App Group (`group.com.darthsky.weather`)
 - See `PrivacyInfo.xcprivacy` for Apple's required privacy manifest

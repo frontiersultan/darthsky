@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import WidgetKit
 
 @Observable
 final class WeatherViewModel {
@@ -20,7 +21,7 @@ final class WeatherViewModel {
                 longitude: location.coordinates.longitude
             )
             // Merge the saved location info into the weather data
-            weatherData = WeatherData(
+            let mergedData = WeatherData(
                 location: location,
                 current: data.current,
                 hourly: data.hourly,
@@ -29,8 +30,13 @@ final class WeatherViewModel {
                 alerts: data.alerts,
                 lastUpdated: data.lastUpdated
             )
+            weatherData = mergedData
             lastRefresh = Date()
             error = nil
+
+            // Sync to App Group for widgets
+            SharedDataManager.shared.saveWeatherData(mergedData)
+            WidgetCenter.shared.reloadAllTimelines()
         } catch {
             self.error = error.localizedDescription
         }
